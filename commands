@@ -1,0 +1,20 @@
+commands:
+
+sudo yum update -y
+sudo yum install git -y
+
+
+sudo amazon-linux-extras install epel -y
+sudo amazon-linux-extras install nodejs14 -y
+
+
+curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
+sudo yum install -y nodejs
+
+git clone https://github.com/rhushab/CSCI5709_term_assignment.git
+cd your-repository
+
+npm install
+
+npm start
+
