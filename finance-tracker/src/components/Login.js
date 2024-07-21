@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Login = ({ setToken, setEmail }) => {
   const [email, setEmailState] = useState('');
   const [password, setPassword] = useState('');
@@ -12,13 +14,10 @@ const Login = ({ setToken, setEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'https://68aa4kkp17.execute-api.us-east-1.amazonaws.com/prod/login',
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/login`, {
+        email,
+        password,
+      });
       setToken(response.data.token, email);
       navigate('/');
     } catch (err) {

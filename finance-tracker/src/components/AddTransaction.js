@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AddTransaction.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const AddTransaction = ({ token, email, fetchSummary }) => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -12,7 +14,7 @@ const AddTransaction = ({ token, email, fetchSummary }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://68aa4kkp17.execute-api.us-east-1.amazonaws.com/prod/add-transaction',
+        `${apiUrl}/add-transaction`,
         {
           userId: email,
           amount,

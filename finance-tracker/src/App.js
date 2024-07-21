@@ -10,6 +10,8 @@ import './styles.css'; // Import the global styles
 
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
@@ -18,14 +20,11 @@ function App() {
 
   const fetchSummary = async () => {
     try {
-      const response = await axios.get(
-        `https://68aa4kkp17.execute-api.us-east-1.amazonaws.com/prod/summary?userId=${email}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/summary?userId=${email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const sortedTransactions = response.data.sort(
         (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
       );

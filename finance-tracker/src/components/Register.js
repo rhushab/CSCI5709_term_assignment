@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Register = ({ setIsRegistered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +15,7 @@ const Register = ({ setIsRegistered }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://68aa4kkp17.execute-api.us-east-1.amazonaws.com/prod/register',
+        `${apiUrl}/register`,
         { email, password },
         {
           headers: {
